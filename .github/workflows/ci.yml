@@ -1,0 +1,35 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  format:
+    runs-on: ubuntu-latest
+    container: elixir:latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Check formatting
+        run: mix format --check-formatted
+
+  lint:
+    runs-on: ubuntu-latest
+    container: elixir:latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Run Credo
+        run: mix credo
+
+  test:
+    runs-on: ubuntu-latest
+    container: elixir:latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Run tests
+        run: mix test
