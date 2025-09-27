@@ -37,7 +37,7 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-       - name: Install Hex
+      - name: Install Hex
         run: mix local.hex --force
       - name: Install Rebar
         run: mix local.rebar --force
