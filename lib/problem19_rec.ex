@@ -5,9 +5,9 @@ defmodule Problem19 do
 
   defp is_leap_year(year) do
     if rem(year, 4) == 0 and (rem(year, 100) != 0 or rem(year, 400) == 0) do
-      :true
+      true
     else
-      :false
+      false
     end
   end
 
@@ -37,12 +37,9 @@ defmodule Problem19 do
 
       count + count_sundays_in_year(next_year, next_month, day_of_week + days, end_year)
     end
-
-
   end
 
   def count_sundays(input_year) do
-      count_sundays_in_year(1900, 1, 1, input_year)
+    count_sundays_in_year(1900, 1, 1, input_year)
   end
-
 end
