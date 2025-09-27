@@ -1,6 +1,6 @@
-defmodule Problem19RecTest do
+defmodule Problem19TailTest do
   use ExUnit.Case
-  import ProblemRec19
+  import ProblemTail19
 
   @base_path "test/resources/problem19"
 

@@ -1,4 +1,4 @@
-defmodule ProblemRec19 do
+defmodule ProblemTail19 do
   @moduledoc """
   Модуль для решения задачи №19.
   """
@@ -20,9 +20,9 @@ defmodule ProblemRec19 do
     end
   end
 
-  defp count_sundays_in_year(current_year, current_month, day_of_week, end_year) do
+  defp count_sundays_in_year(current_year, current_month, day_of_week, end_year, count_sundays) do
     if current_year > end_year do
-      0
+      count_sundays
     else
       count = if current_year >= 1901 and rem(day_of_week, 7) == 0, do: 1, else: 0
 
@@ -35,11 +35,17 @@ defmodule ProblemRec19 do
           {current_year, current_month + 1}
         end
 
-      count + count_sundays_in_year(next_year, next_month, day_of_week + days, end_year)
+      count_sundays_in_year(
+        next_year,
+        next_month,
+        day_of_week + days,
+        end_year,
+        count_sundays + count
+      )
     end
   end
 
   def count_sundays(input_year) do
-    count_sundays_in_year(1900, 1, 1, input_year)
+    count_sundays_in_year(1900, 1, 1, input_year, 0)
   end
 end
