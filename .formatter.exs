@@ -1,8 +1,8 @@
 # .formatter.exs
 [
   inputs: [
-    "src/main/**/*.{ex,exs}",
-    "src/test/**/*.{ex,exs}",
+    "lib/**/*.{ex,exs}",
+    "test/**/*.{ex,exs}",
     "mix.exs",
     ".formatter.exs"
   ],
