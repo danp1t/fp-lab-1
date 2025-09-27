@@ -1,4 +1,7 @@
 defmodule Math do
+  @moduledoc """
+  Модуль для математических операций.
+  """
   def add(a, b) do
     a + b
   end
