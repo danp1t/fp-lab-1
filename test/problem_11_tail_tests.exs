@@ -1,6 +1,18 @@
-defmodule Problem11RecTest do
+defmodule Problem11RecTailTest do
+  defp read_grid_from_file(file_path) do
+    file_path
+    |> File.read!()
+    |> String.trim()
+    |> String.split("\n")
+    |> Enum.map(fn line ->
+      line
+      |> String.split()
+      |> Enum.map(&String.to_integer/1)
+    end)
+  end
+
   use ExUnit.Case
-  import ProblemRec11
+  import ProblemRecTail11
 
   @base_path "test/resources/problem11"
 
@@ -50,19 +62,7 @@ defmodule Problem11RecTest do
 
     expected_val = File.read!(output_file) |> String.trim() |> String.to_integer()
 
-    actual = recursive_solution(read_grid_from_file(input_file))
+    actual = rec_tail_solution(read_grid_from_file(input_file))
     assert actual == expected_val
-  end
-
-  defp read_grid_from_file(file_path) do
-    file_path
-    |> File.read!()
-    |> String.trim()
-    |> String.split("\n")
-    |> Enum.map(fn line ->
-      line
-      |> String.split()
-      |> Enum.map(&String.to_integer/1)
-    end)
   end
 end
