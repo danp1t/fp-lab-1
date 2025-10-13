@@ -1,16 +1,4 @@
 defmodule Problem11RecTailTest do
-  defp read_grid_from_file(file_path) do
-    file_path
-    |> File.read!()
-    |> String.trim()
-    |> String.split("\n")
-    |> Enum.map(fn line ->
-      line
-      |> String.split()
-      |> Enum.map(&String.to_integer/1)
-    end)
-  end
-
   use ExUnit.Case
   import ProblemRecTail11
 
@@ -54,6 +42,18 @@ defmodule Problem11RecTailTest do
 
   test "test case 10" do
     test_file_pair(10)
+  end
+
+  defp read_grid_from_file(file_path) do
+    file_path
+    |> File.read!()
+    |> String.trim()
+    |> String.split("\n")
+    |> Enum.map(fn line ->
+      line
+      |> String.split()
+      |> Enum.map(&String.to_integer/1)
+    end)
   end
 
   defp test_file_pair(i) do
