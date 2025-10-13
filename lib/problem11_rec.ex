@@ -15,7 +15,7 @@ defmodule ProblemRec11 do
     recursive_function(grid, i + 1, 0, max, rows, cols)
   end
 
-  defp recursive_search(grid, i, j, max, rows, cols) do
+  defp recursive_function(grid, i, j, max, rows, cols) do
     current_max =
       max
       |> horizontal(grid, i, j, cols)
@@ -23,7 +23,7 @@ defmodule ProblemRec11 do
       |> diagonal1(grid, i, j, rows, cols)
       |> diagonal2(grid, i, j, rows, cols)
 
-    max(current_max, recursive_search(grid, i, j + 1, current_max, rows, cols))
+    max(current_max, recursive_function(grid, i, j + 1, current_max, rows, cols))
   end
 
   defp horizontal(max, grid, i, j, cols) when j <= cols - 4 do
