@@ -57,7 +57,7 @@ defmodule Problem11RecTailTest do
   end
 
   defp test_file_pair(i) do
-    input_file = Path.join([@base_path, "input", "input_#{i}.txt"])
+    input_file = Path.join([@base_path, "input", "input_values_#{i}.txt"])
     output_file = Path.join([@base_path, "output", "output_#{i}.txt"])
 
     expected_val = File.read!(output_file) |> String.trim() |> String.to_integer()
