@@ -23,47 +23,55 @@ defmodule ProblemModule11 do
   end
 
   defp horizontal(grid, rows, cols) do
-    for i <- 0..(rows - 1), j <- 0..(cols - 4) do
-      [
-        get_in(grid, [Access.at(i), Access.at(j)]),
-        get_in(grid, [Access.at(i), Access.at(j + 1)]),
-        get_in(grid, [Access.at(i), Access.at(j + 2)]),
-        get_in(grid, [Access.at(i), Access.at(j + 3)])
-      ]
-    end
+    Enum.flat_map(0..(rows - 1), fn i ->
+      Enum.map(0..(cols - 4), fn j ->
+        [
+          get_in(grid, [Access.at(i), Access.at(j)]),
+          get_in(grid, [Access.at(i), Access.at(j + 1)]),
+          get_in(grid, [Access.at(i), Access.at(j + 2)]),
+          get_in(grid, [Access.at(i), Access.at(j + 3)])
+        ]
+      end)
+    end)
   end
 
   defp vertical(grid, rows, cols) do
-    for i <- 0..(rows - 4), j <- 0..(cols - 1) do
-      [
-        get_in(grid, [Access.at(i), Access.at(j)]),
-        get_in(grid, [Access.at(i + 1), Access.at(j)]),
-        get_in(grid, [Access.at(i + 2), Access.at(j)]),
-        get_in(grid, [Access.at(i + 3), Access.at(j)])
-      ]
-    end
+    Enum.flat_map(0..(rows - 4), fn i ->
+      Enum.map(0..(cols - 1), fn j ->
+        [
+          get_in(grid, [Access.at(i), Access.at(j)]),
+          get_in(grid, [Access.at(i + 1), Access.at(j)]),
+          get_in(grid, [Access.at(i + 2), Access.at(j)]),
+          get_in(grid, [Access.at(i + 3), Access.at(j)])
+        ]
+      end)
+    end)
   end
 
   defp diagonals(grid, rows, cols) do
     diagonal1 =
-      for i <- 0..(rows - 4), j <- 0..(cols - 4) do
-        [
-          get_in(grid, [Access.at(i), Access.at(j)]),
-          get_in(grid, [Access.at(i + 1), Access.at(j + 1)]),
-          get_in(grid, [Access.at(i + 2), Access.at(j + 2)]),
-          get_in(grid, [Access.at(i + 3), Access.at(j + 3)])
-        ]
-      end
+      Enum.flat_map(0..(rows - 4), fn i ->
+        Enum.map(0..(cols - 4), fn j ->
+          [
+            get_in(grid, [Access.at(i), Access.at(j)]),
+            get_in(grid, [Access.at(i + 1), Access.at(j + 1)]),
+            get_in(grid, [Access.at(i + 2), Access.at(j + 2)]),
+            get_in(grid, [Access.at(i + 3), Access.at(j + 3)])
+          ]
+        end)
+      end)
 
     diagonal2 =
-      for i <- 3..(rows - 1), j <- 0..(cols - 4) do
-        [
-          get_in(grid, [Access.at(i), Access.at(j)]),
-          get_in(grid, [Access.at(i - 1), Access.at(j + 1)]),
-          get_in(grid, [Access.at(i - 2), Access.at(j + 2)]),
-          get_in(grid, [Access.at(i - 3), Access.at(j + 3)])
-        ]
-      end
+      Enum.flat_map(3..(rows - 1), fn i ->
+        Enum.map(0..(cols - 4), fn j ->
+          [
+            get_in(grid, [Access.at(i), Access.at(j)]),
+            get_in(grid, [Access.at(i - 1), Access.at(j + 1)]),
+            get_in(grid, [Access.at(i - 2), Access.at(j + 2)]),
+            get_in(grid, [Access.at(i - 3), Access.at(j + 3)])
+          ]
+        end)
+      end)
 
     diagonal1 ++ diagonal2
   end
