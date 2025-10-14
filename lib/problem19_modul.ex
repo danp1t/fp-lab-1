@@ -16,7 +16,11 @@ defmodule ProblemModule19 do
   end
 
   defp generate_months(start_year, end_year) do
-    for year <- start_year..end_year, month <- 1..12, do: {year, month}
+    start_year..end_year
+    |> Enum.flat_map(fn year ->
+      1..12
+      |> Enum.map(fn month -> {year, month} end)
+    end)
   end
 
   defp days_in_month(month, year) do
