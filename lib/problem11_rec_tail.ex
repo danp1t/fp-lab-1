@@ -62,7 +62,7 @@ defmodule ProblemRecTail11 do
 
   defp diagonal1(max, _grid, _i, _j, _rows, _cols), do: max
 
-  defp diagonal2(max, grid, i, j, rows, cols) when i >= 3 and j <= cols - 4 do
+  defp diagonal2(max, grid, i, j, _rows, cols) when i >= 3 and j <= cols - 4 do
     product =
       get_in(grid, [Access.at(i), Access.at(j)]) *
         get_in(grid, [Access.at(i - 1), Access.at(j + 1)]) *
