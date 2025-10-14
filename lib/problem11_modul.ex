@@ -78,13 +78,15 @@ defmodule ProblemModule11 do
 
   defp filter_sequences(sequences) do
     Enum.filter(sequences, fn sequence ->
-      Enum.all?(sequence, &is_integer/1) and length(sequence) == 4
+      length(sequence) == 4
     end)
   end
 
   defp calculate(sequences) do
     Enum.map(sequences, fn sequence ->
-      Enum.reduce(sequence, 1, &(&1 * &2))
+      Enum.reduce(sequence, 1, fn element, accumulator ->
+        element * accumulator
+      end)
     end)
   end
 
